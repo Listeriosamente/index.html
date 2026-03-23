@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<title>Teoria de Obstáculos Interativa - Completa</title>
+<style>
+  body { font-family: Arial, sans-serif; background: #f9f9f9; }
+  h1 { text-align: center; margin-bottom: 20px; }
+  .container { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin: 20px; }
+  .alimento { background: #fff; border: 2px solid #ccc; border-radius: 10px; width: 260px; padding: 15px; }
+  .titulo { font-weight: bold; margin-bottom: 10px; text-align: center; }
+  .obstaculo { background: #e0e0e0; padding: 5px; margin: 3px 0; border-radius: 5px; cursor: pointer; }
+  .obstaculo:hover { background: #a0d2f0; }
+  .resposta { cursor: pointer; margin: 2px 0; }
+</style>
+</head>
+<body>
+<h1>Teoria de Obstáculos - 7 Alimentos</h1>
+<div class="container" id="container"></div>
+<script>
+const alimentos = [
+{nome:'Iogurte',obs:[
+{n:'Pasteurização',c:false},{n:'pH baixo',c:true},{n:'Refrigeração',c:false}]},
+{nome:'Presunto curado',obs:[
+{n:'aw baixa',c:true},{n:'Maturação',c:false},{n:'pH baixo',c:false}]},
+{nome:'Queijo curado',obs:[
+{n:'Sal',c:false},{n:'pH baixo',c:true},{n:'Microbiota',c:false}]},
+{nome:'Salsichas fermentadas',obs:[
+{n:'Fermentação',c:true},{n:'aw baixa',c:false},{n:'Competição',c:false}]},
+{nome:'Sumo pasteurizado',obs:[
+{n:'Pasteurização',c:true},{n:'pH baixo',c:false},{n:'Embalagem',c:false}]},
+{nome:'Conservas',obs:[
+{n:'pH ácido',c:true},{n:'Sal/açúcar',c:false},{n:'Calor',c:false}]},
+{nome:'Chocolate recheado',obs:[
+{n:'aw baixa',c:true},{n:'Temperatura',c:false},{n:'pH',c:false}]}
+];
+
+const container = document.getElementById('container');
+
+alimentos.forEach(a=>{
+ let div=document.createElement('div');
+ div.className='alimento';
+ div.innerHTML='<div class="titulo">'+a.nome+'</div>';
+
+ a.obs.forEach(o=>{
+  let ob=document.createElement('div');
+  ob.className='obstaculo';
+  ob.innerText=o.n+(o.c?' ⭐':'');
+  ob.onclick=()=>alert(o.n);
+  div.appendChild(ob);
+ });
+
+ let quiz=document.createElement('div');
+ quiz.innerHTML='<b>Mais crítico?</b>';
+
+ a.obs.forEach(o=>{
+  let r=document.createElement('div');
+  r.className='resposta';
+  r.innerText=o.n;
+  r.onclick=()=>alert(o.c?'✅':'❌');
+  quiz.appendChild(r);
+ });
+
+ div.appendChild(quiz);
+ container.appendChild(div);
+});
+</script>
+</body>
+</html>
