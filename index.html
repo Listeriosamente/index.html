@@ -66,4 +66,14 @@ alimentos.forEach(a=>{
   let r=document.createElement('div');
   r.className='resposta';
   r.innerText=o.n;
-  r.onclick=()=>alert(o.c?'✅ Correto!':'❌ Tente novame
+  r.onclick=()=>alert(o.c?'✅ Correto!':'❌ Tente novamente');
+  quiz.appendChild(r);
+ });
+
+ div.appendChild(quiz);
+ container.appendChild(div);
+});
+</script>
+
+</body>
+</html>
